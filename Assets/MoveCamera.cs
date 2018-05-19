@@ -17,10 +17,10 @@ public class MoveCamera : MonoBehaviour {
 
     // TODO: better initial position; handle mouse pointer at edges of viewport
 
-    public float mainSpeed  = 10.0f;   //regular speed
-    public float shiftAdd   = 20.0f;   //multiplied by how long shift is held.  Basically running
-    public float maxShift   = 100.0f;  //Maximum speed when holding shift
-    public float camSens    = 0.05f;    //How sensitive it with mouse
+    public float mainSpeed  =   5.0f;   //regular speed
+    public float shiftAdd   =  10.0f;   //multiplied by how long shift is held.  Basically running
+    public float maxShift   = 100.0f;   //Maximum speed when holding shift
+    public float camSens    =  0.05f;   //How sensitive it with mouse
     private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
     private float totalRun = 1.0f;
 
@@ -33,7 +33,6 @@ public class MoveCamera : MonoBehaviour {
         //Mouse  camera angle done.  
 
         //Keyboard commands
-        float f = 0.0f;
         Vector3 p = GetBaseInput();
         if (Input.GetKey (KeyCode.LeftShift)){
             totalRun += Time.deltaTime;
