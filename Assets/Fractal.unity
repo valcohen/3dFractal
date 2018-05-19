@@ -302,10 +302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a87c424d3cf46508ab9aa2289e594d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: a23a635b0c6974346b0f9db154c6377e, type: 2}
   maxDepth: 4
   childScale: 0.5
+  delay: 0.5
 --- !u!4 &1748726813
 Transform:
   m_ObjectHideFlags: 0

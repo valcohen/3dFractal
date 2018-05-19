@@ -12,6 +12,22 @@ public class Fractal : MonoBehaviour {
 
     private int depth;
 
+    private static readonly Vector3[] childDirections = {
+        Vector3.up,
+        Vector3.right,
+        Vector3.left,
+        Vector3.forward,
+        Vector3.back
+    };
+
+    private static readonly Quaternion[] childOrientations = {
+        Quaternion.identity,
+        Quaternion.Euler (  0, 0, -90),
+        Quaternion.Euler (  0, 0,  90),
+        Quaternion.Euler ( 90, 0,   0),
+        Quaternion.Euler (-90, 0,   0)
+    };
+
 	void Start () {
         gameObject.AddComponent<MeshFilter> ().mesh = mesh;
         gameObject.AddComponent<MeshRenderer> ().material = material;
@@ -26,19 +42,15 @@ public class Fractal : MonoBehaviour {
 	}
 
     private IEnumerator CreateChildren () {
-        yield return new WaitForSeconds (delay);
-        new GameObject ("Fractal Child").AddComponent<Fractal> ()
-            .Initialize(this, Vector3.up, Quaternion.identity);
-        yield return new WaitForSeconds (delay);
-        new GameObject ("Fractal Child").AddComponent<Fractal> ()
-            .Initialize(this, Vector3.right, Quaternion.Euler(0, 0, -90));
-        yield return new WaitForSeconds (delay);
-        new GameObject ("Fractal Child").AddComponent<Fractal> ()
-            .Initialize(this, Vector3.left, Quaternion.Euler(0, 0, 90));
+        for (int i = 0; i < childDirections.Length; i++) {
+            yield return new WaitForSeconds (delay);
+            new GameObject ("Fractal Child").AddComponent<Fractal> ()
+                .Initialize(this, i);
+        }
     }
 
 
-    private void Initialize( Fractal parent, Vector3 direction, Quaternion orientation) {
+    private void Initialize( Fractal parent, int childIndex) {
         mesh        = parent.mesh;
         material    = parent.material;
         maxDepth    = parent.maxDepth;
@@ -47,8 +59,8 @@ public class Fractal : MonoBehaviour {
 
         transform.parent        = parent.transform;
         transform.localScale    = Vector3.one * childScale;
-        transform.localPosition = direction * (0.5f + 0.5f * childScale);
-        transform.localRotation = orientation;
+        transform.localPosition = childDirections[childIndex] * (0.5f + 0.5f * childScale);
+        transform.localRotation = childOrientations[childIndex];
     }
 
 }
