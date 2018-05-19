@@ -14,9 +14,11 @@ public class Fractal : MonoBehaviour {
     public Color tipColor   = Color.green;
     public bool colorTips   = false;
     public ColorRangeName colorRange;
+    public float maxRotationSpeed = 30f;
 
     private int depth;
     private Material[,] materials;
+    private float rotationSpeed;
 
     private static readonly Vector3[] childDirections = {
         Vector3.up,
@@ -38,6 +40,7 @@ public class Fractal : MonoBehaviour {
         if (materials == null) {
             InitializeMaterials ();
         }
+        rotationSpeed = Random.Range (-maxRotationSpeed, maxRotationSpeed); // maxRotationSpeed;
         gameObject.AddComponent<MeshFilter> ().mesh = mesh;
         gameObject.AddComponent<MeshRenderer> ().material = materials[depth, (int)colorRange];
         if (depth < maxDepth) {
@@ -47,7 +50,7 @@ public class Fractal : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        transform.Rotate (0, rotationSpeed * Time.deltaTime, 0);
 	}
 
     private IEnumerator CreateChildren () {
@@ -65,6 +68,7 @@ public class Fractal : MonoBehaviour {
         maxDepth    = parent.maxDepth;
         depth       = parent.depth + 1;
         childScale  = parent.childScale;
+        maxRotationSpeed = parent.maxRotationSpeed;
 
         transform.parent        = parent.transform;
         transform.localScale    = Vector3.one * childScale;

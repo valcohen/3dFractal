@@ -253,20 +253,20 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1320107517}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -4.62}
+  m_LocalRotation: {x: 0.07799667, y: -0.44454667, z: 0.038892813, w: 0.8915056}
+  m_LocalPosition: {x: 2.02, y: 0.63, z: -1.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: -53.006004, z: 0}
 --- !u!114 &1320107522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1320107517}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcf6f7bf08ff84944847bc2b90ec258e, type: 3}
   m_Name: 
@@ -302,16 +302,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a87c424d3cf46508ab9aa2289e594d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: a23a635b0c6974346b0f9db154c6377e, type: 2}
   maxDepth: 6
   childScale: 0.5
   delay: 0.5
   startColor: {r: 0.9896552, g: 1, b: 0, a: 1}
   endColor: {r: 0.99655175, g: 0, b: 0, a: 1}
-  tipColor: {r: 0.38275862, g: 0, b: 0.7132353, a: 1}
-  colorTips: 0
+  tipColor: {r: 0.18965517, g: 0.25735295, b: 0.4632353, a: 1}
+  colorTips: 1
   colorRange: 1
+  maxRotationSpeed: 5
 --- !u!4 &1748726813
 Transform:
   m_ObjectHideFlags: 0
