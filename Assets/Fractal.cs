@@ -11,9 +11,12 @@ public class Fractal : MonoBehaviour {
     public float delay      = 0.5f;
     public Color startColor = Color.yellow;
     public Color endColor   = Color.red;
+    public Color tipColor   = Color.green;
+    public bool colorTips   = false;
+    public ColorRangeName colorRange;
 
     private int depth;
-    private Material[] materials;
+    private Material[,] materials;
 
     private static readonly Vector3[] childDirections = {
         Vector3.up,
@@ -36,7 +39,7 @@ public class Fractal : MonoBehaviour {
             InitializeMaterials ();
         }
         gameObject.AddComponent<MeshFilter> ().mesh = mesh;
-        gameObject.AddComponent<MeshRenderer> ().material = materials[depth];
+        gameObject.AddComponent<MeshRenderer> ().material = materials[depth, (int)colorRange];
         if (depth < maxDepth) {
             StartCoroutine (CreateChildren ());
         }
@@ -71,11 +74,26 @@ public class Fractal : MonoBehaviour {
     }
 
     private void InitializeMaterials() {
-        materials = new Material[maxDepth + 1];
+        materials = new Material[maxDepth + 1, 2];
         for (int i = 0; i <= maxDepth; i++) {
-            materials [i] = new Material (material);
-            materials[i].color = Color.Lerp (startColor, endColor, (float)i / maxDepth);
+            float t = i / (maxDepth - 1f);
+            t *= t;
+
+            materials [i, 0] = new Material (material);
+            materials [i, 0].color = Color.Lerp (startColor, endColor, (float)i / maxDepth);
+
+            materials [i, 1] = new Material (material);
+            materials [i, 1].color = Color.Lerp (startColor, endColor, t);
         }
+        if (colorTips) {
+            materials [maxDepth, 0].color = tipColor;
+            materials [maxDepth, 1].color = tipColor;
+        }
+    }
+
+    public enum ColorRangeName {
+        Linear,
+        Squared
     }
 
 }
