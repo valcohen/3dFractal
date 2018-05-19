@@ -9,12 +9,15 @@ public class Fractal : MonoBehaviour {
     public int maxDepth     = 4;
     public float childScale = 0.5f;
     public float delay      = 0.5f;
+
     public Color startColor = Color.yellow;
     public Color endColor   = Color.red;
     public Color tipColor   = Color.green;
     public bool colorTips   = false;
     public ColorRangeName colorRange;
+
     public float maxRotationSpeed = 30f;
+    public bool randomizeSpeed = false;
 
     private int depth;
     private Material[,] materials;
@@ -40,7 +43,9 @@ public class Fractal : MonoBehaviour {
         if (materials == null) {
             InitializeMaterials ();
         }
-        rotationSpeed = Random.Range (-maxRotationSpeed, maxRotationSpeed); // maxRotationSpeed;
+        rotationSpeed = (randomizeSpeed) 
+                      ? Random.Range (-maxRotationSpeed, maxRotationSpeed)
+                      : maxRotationSpeed;
         gameObject.AddComponent<MeshFilter> ().mesh = mesh;
         gameObject.AddComponent<MeshRenderer> ().material = materials[depth, (int)colorRange];
         if (depth < maxDepth) {
