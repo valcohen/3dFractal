@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: a23a635b0c6974346b0f9db154c6377e, type: 2}
-  maxDepth: 4
+  material: {fileID: 2100000, guid: ccdd619bf619445b29747d669f3fc4d2, type: 2}
+  maxDepth: 5
   childScale: 0.5
   delay: 0.5
 --- !u!4 &1748726813
